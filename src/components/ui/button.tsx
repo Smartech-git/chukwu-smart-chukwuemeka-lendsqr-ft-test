@@ -36,7 +36,7 @@ export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonE
   disabled?: boolean;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, variant, size, asChild = false, startContent, endContent, disabled = false, isLoading = false, children, "aria-label": ariaLabel, ...props }, ref) => {
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, variant, size, startContent, endContent, disabled = false, isLoading = false, children, ...props }, ref) => {
   return (
     <button className={cn(buttonVariants({ variant, size }), className)} ref={ref} disabled={disabled as boolean} {...props}>
       {isLoading ? (

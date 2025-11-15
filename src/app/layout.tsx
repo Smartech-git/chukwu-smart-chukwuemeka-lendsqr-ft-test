@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+
 import "./styles/layout/globals.scss";
 import { SvgSprite } from "@/components/icons";
 

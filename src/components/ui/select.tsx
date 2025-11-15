@@ -3,8 +3,8 @@
 import * as SelectPrimitive from "@radix-ui/react-select";
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
 import { Icon } from "@/components/icons";
+import { cn } from "@/lib/utils";
 
 const Select = SelectPrimitive.Root;
 
@@ -24,7 +24,7 @@ const SelectTrigger = React.forwardRef<React.ComponentRef<typeof SelectPrimitive
     <SelectPrimitive.Trigger
       ref={ref}
       className={cn("input select-trigger", className, {
-        isInvalid: "is-invalid",
+        "is-invalid": isInvalid,
       })}
       {...props}>
       {children}
@@ -54,7 +54,7 @@ SelectScrollDownButton.displayName = SelectPrimitive.ScrollDownButton.displayNam
 interface SelectContentProps extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content> {
   options?: Options;
 }
-const SelectContent = React.forwardRef<React.ComponentRef<typeof SelectPrimitive.Content>, SelectContentProps>(({ className, children, hidden, options, position = "popper", ...props }, ref) =>
+const SelectContent = React.forwardRef<React.ComponentRef<typeof SelectPrimitive.Content>, SelectContentProps>(({ className, hidden, options, position = "popper", ...props }, ref) =>
   hidden ? null : (
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content ref={ref} className={cn("element-content", className)} position={position} {...props}>
@@ -79,7 +79,7 @@ SelectLabel.displayName = SelectPrimitive.Label.displayName;
 interface SelectItemProps extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item> {
   showIndicator?: boolean;
 }
-const SelectItem = React.forwardRef<React.ComponentRef<typeof SelectPrimitive.Item>, SelectItemProps>(({ className, children, showIndicator = false, ...props }, ref) => (
+const SelectItem = React.forwardRef<React.ComponentRef<typeof SelectPrimitive.Item>, SelectItemProps>(({ className, children, ...props }, ref) => (
   <SelectPrimitive.Item ref={ref} className={cn("select-item element-item", className)} {...props}>
     <SelectPrimitive.ItemIndicator className='select-item-indicator' asChild>
       <Icon name='icon-check-mark' width={14} height={14} />

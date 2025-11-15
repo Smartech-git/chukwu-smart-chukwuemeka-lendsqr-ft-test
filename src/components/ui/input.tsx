@@ -2,7 +2,7 @@
 
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -36,9 +36,13 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   label?: string;
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, inputWrapperClassname, type, startContent, endContent, placeholder, isInvalid = false, variant, disabled = false, error, label, onChange, onFocus, onBlur, ...props }, ref) => {
+const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, inputWrapperClassname, type, startContent, endContent, placeholder, isInvalid = false, variant, disabled = false, error, onChange, onFocus, onBlur, value, defaultValue, ...props }, ref) => {
+  // Initialize filled state based on defaultValue or value prop
   const [isFocused, setIsFocused] = useState(false);
-  const [isFilled, setIsFilled] = useState(false);
+  const [isFilled, setIsFilled] = useState(() => {
+    const initialValue = value ?? defaultValue;
+    return initialValue !== undefined && initialValue !== null && initialValue !== "";
+  });
 
   const internalInputRef = useRef<HTMLInputElement>(null);
 
@@ -50,6 +54,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, input
       } else if (ref) {
         ref.current = node;
       }
+      // Check if input has value after ref is set
+      if (node) {
+        const inputValue = node.value;
+        setIsFilled(inputValue !== "" && inputValue !== undefined && inputValue !== null);
+      }
     },
     [ref]
   );
@@ -60,10 +69,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, input
       setIsFilled(inputValue !== "" && inputValue !== undefined && inputValue !== null);
     }
   };
-
-  useEffect(() => {
-    checkInputValue();
-  }, []);
 
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     setIsFocused(true);
