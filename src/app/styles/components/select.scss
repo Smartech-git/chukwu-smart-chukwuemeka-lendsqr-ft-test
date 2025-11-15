@@ -1,0 +1,53 @@
+/* reset */
+button {
+  all: unset;
+}
+
+.select-trigger:hover {
+  background-color: var(--mauve-3);
+}
+.select-trigger {
+  color: var(--color-gray-900);
+  font-size: var(--font-size-sm);
+}
+
+.select-icon {
+  color: var(--color-gray-600);
+}
+.select-trigger[data-placeholder] {
+  color: var(--color-gray-600);
+}
+
+.select-label {
+  padding: 0 25px;
+  font-size: 12px;
+  line-height: 25px;
+  color: var(--mauve-11);
+}
+
+.select-icon {
+  position: absolute;
+  right: var(--spacing-sm);
+}
+
+.select-separator {
+  height: 1px;
+  background-color: var(--violet-6);
+  margin: 5px;
+}
+
+.select-item-indicator {
+  position: absolute;
+  right: 2px;
+  color: inherit;
+}
+
+.select-scroll-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  background-color: white;
+  color: inherit;
+  cursor: default;
+}

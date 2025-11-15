@@ -1,4 +1,4 @@
 
 export default function Auth() {
-  return <div></div>;
+  return <div className="bt"></div>;
 }

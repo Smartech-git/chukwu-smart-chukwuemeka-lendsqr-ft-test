@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import "./styles/layout/globals.scss";
+import { SvgSprite } from "@/components/icons";
 
 const avenirNext = localFont({
   src: [
@@ -57,7 +58,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={avenirNext.className}>{children}</body>
+      <body className={avenirNext.className}>
+        {children}
+        <SvgSprite />
+      </body>
     </html>
   );
 }

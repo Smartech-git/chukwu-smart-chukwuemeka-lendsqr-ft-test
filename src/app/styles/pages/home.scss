@@ -1,0 +1,16 @@
+.wrapper {
+  width: 100%;
+  position: relative;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-secondary-dark-brown);
+}
+
+.wrapper-inner {
+  width: 900px;
+  gap: 4px;
+  flex-direction: row;
+  display: flex;
+}
