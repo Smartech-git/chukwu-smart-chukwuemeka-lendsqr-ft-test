@@ -1,0 +1,19 @@
+.header-search {
+  display: flex;
+  margin-left: var(--spacing-2pg);
+  width: 400px;
+}
+
+.header-search .input {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-right: none;
+}
+
+.header-search .btn {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  width: 56px;
+}

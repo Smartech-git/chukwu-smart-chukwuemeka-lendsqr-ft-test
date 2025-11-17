@@ -12,6 +12,10 @@ const inputVariants = cva("input", {
       outlined: "input--outlined",
       underlined: "input--underlined",
     },
+    size: {
+      default: "input--size-default",
+      md: "input--size-md",
+    },
     disabled: {
       false: "",
       true: "is-disabled",
@@ -24,20 +28,23 @@ const inputVariants = cva("input", {
   defaultVariants: {
     variant: "outlined",
     disabled: false,
+    size: "default",
   },
 });
 
-export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "disabled">, VariantProps<typeof inputVariants> {
+type NativeInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "disabled" | "size">;
+
+export interface InputProps extends NativeInputProps, VariantProps<typeof inputVariants> {
   startContent?: React.ReactNode;
   endContent?: React.ReactNode;
   inputWrapperClassname?: string;
   isInvalid?: boolean;
   error?: string;
   label?: string;
+  animatePlaceholder?: boolean;
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, inputWrapperClassname, type, startContent, endContent, placeholder, isInvalid = false, variant, disabled = false, error, onChange, onFocus, onBlur, value, defaultValue, ...props }, ref) => {
-  // Initialize filled state based on defaultValue or value prop
+const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, inputWrapperClassname, animatePlaceholder = true, type, startContent, endContent, placeholder, isInvalid = false, variant, size = "default", disabled = false, error, onChange, onFocus, onBlur, value, defaultValue, ...props }, ref) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(() => {
     const initialValue = value ?? defaultValue;
@@ -52,9 +59,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, input
       if (typeof ref === "function") {
         ref(node);
       } else if (ref) {
-        ref.current = node;
+        (ref as React.RefObject<HTMLInputElement>).current = node;
       }
-      // Check if input has value after ref is set
       if (node) {
         const inputValue = node.value;
         setIsFilled(inputValue !== "" && inputValue !== undefined && inputValue !== null);
@@ -85,20 +91,29 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, input
     onChange?.(e);
   };
 
-  const hasPlaceholder = Boolean(placeholder);
+  const hasPlaceholder = Boolean(animatePlaceholder ? placeholder : false);
 
   return (
     <div className={cn("input-group", inputWrapperClassname)}>
       <div
-        className={cn(inputVariants({ variant, disabled, isInvalid }), className, {
-          "has-placeholder": hasPlaceholder,
-          "is-focused": isFocused,
-          "is-filled": isFilled,
-        })}
+        className={cn(
+          inputVariants({
+            variant,
+            disabled: disabled ? true : false,
+            isInvalid: isInvalid ? true : false,
+            size,
+          }),
+          className,
+          {
+            "has-placeholder": hasPlaceholder,
+            "is-focused": isFocused,
+            "is-filled": isFilled,
+          }
+        )}
         data-placeholder={placeholder}>
         {startContent && <div className='input-addon input-addon-start'>{startContent}</div>}
 
-        <input ref={inputRef} disabled={disabled as boolean} type={type} className='input-field' onChange={handleChange} onFocus={handleFocus} onBlur={handleBlur} {...props} />
+        <input ref={inputRef} disabled={disabled as boolean} type={type} className='input-field' onChange={handleChange} onFocus={handleFocus} onBlur={handleBlur} placeholder={animatePlaceholder ? undefined : placeholder} {...props} />
 
         {endContent && <div className='input-addon input-addon-end'>{endContent}</div>}
       </div>

@@ -1,0 +1,39 @@
+@use "../../base/variables" as vars;
+
+.header {
+  width: 100%;
+  height: vars.$header-height;
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-bottom);
+  position: absolute;
+  top: 0;
+  padding-right: var(--spacing-pg);
+  display: flex;
+  align-items: center;
+  z-index: 50;
+}
+
+.header-logo-wrapper {
+  padding-left: var(--spacing-pg);
+  width: vars.$side-nav-wrapper;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.header-end-content {
+  margin-left: auto;
+  padding-left: var(--spacing-base);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.header-end-content .btn {
+  color: var(--color-secondary);
+  font-size: var(--spacing-base);
+}
+
+.header-btn-docs {
+  margin: 0px var(--spacing-lg);
+}

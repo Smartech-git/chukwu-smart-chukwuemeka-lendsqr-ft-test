@@ -14,7 +14,7 @@
   text-transform: capitalize;
   white-space: nowrap;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: var(--transition-hover);
   line-height: 0;
   outline: none;
 
@@ -72,7 +72,7 @@
   height: auto !important;
   padding: 0 !important;
   border-radius: 0 !important;
-  line-height: normal;
+  line-height: 12px;
   width: fit-content !important;
   border-bottom: 1.5px solid transparent;
 
@@ -89,6 +89,10 @@
   }
 }
 
+.btn-link-underline {
+  border-bottom: 1.5px solid currentColor;
+}
+
 .btn--size-default {
   padding: 0 var(--spacing-xl);
   height: var(--button-height-default);
@@ -100,7 +104,7 @@
 }
 
 .btn--size-sm {
-  padding: 0 var(--spacing-md);
+  padding: 0 var(--spacing-base);
   height: var(--button-height-sm);
 }
 

@@ -1,0 +1,31 @@
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  cursor: pointer;
+  color: var(--color-secondary);
+}
+
+.header-user p {
+  color: inherit;
+  font-weight: 600;
+  font-size: var(--spacing-base);
+}
+
+.header-user-image-wrapper {
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-secondary-160);
+  overflow: hidden;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-user-image-wrapper > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}

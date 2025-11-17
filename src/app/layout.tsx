@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import { Work_Sans } from "next/font/google";
 import localFont from "next/font/local";
 
-import "./styles/layout/globals.scss";
+import "./styles/globals.scss";
 import { SvgSprite } from "@/components/icons";
 
 const avenirNext = localFont({
@@ -36,6 +37,13 @@ const avenirNext = localFont({
   display: "swap",
 });
 
+const workSans = Work_Sans({
+  subsets: ["latin"],
+  variable: "--font-work-sans",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Loan management software | Lending software | Lendsqr",
   description: "Start and scale your loan business with Lendsqr loan management system. Get the best features to position you as a market leader and make your customers happy!",
@@ -59,7 +67,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={avenirNext.className}>
+      <body className={`${avenirNext.className} ${workSans.className}`}>
         {children}
         <SvgSprite />
       </body>

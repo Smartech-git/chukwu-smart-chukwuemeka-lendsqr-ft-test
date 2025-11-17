@@ -1,7 +1,9 @@
 :root {
   --color-primary: #39cdcc;
   --color-primary-light: #39cdcc0f;
+
   --color-secondary: #213f7d;
+  --color-secondary-160: #213f7d29;
 
   --color-gray-40: #545f7d0a;
   --color-gray-100: #545f7d26;
@@ -11,9 +13,12 @@
 
   --color-surface: #ffffff;
   --color-surface-mid: #fbfbfb;
+  
   --color-error: #ef4444;
 
   --shadow-default: 3px 5px 20px 0px rgba(0, 0, 0, 0.04);
+  --shadow-bottom: 3px 0px 20px 0px rgba(0, 0, 0, 0.04);
+  --shadow-right: 0px 5px 20px 0px rgba(0, 0, 0, 0.04);
 }
 
 .shadow-default {
