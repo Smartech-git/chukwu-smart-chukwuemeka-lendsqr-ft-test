@@ -4,5 +4,5 @@ interface Props {
   children: ReactNode;
 }
 export default function SideNavWrapper({ children }: Props) {
-  return <div className='side-nav-wrapper hide-scrollbar'>{children}</div>;
+  return <div className='side-nav-wrapper'>{children}</div>;
 }
