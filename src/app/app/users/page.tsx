@@ -1,5 +1,13 @@
-import React from "react";
+import PageTitle from "@/components/common/page.title";
+import Metrics from "@/components/content/users/metrics";
+import UsersTable from "@/components/content/users/users-table";
 
 export default function Page() {
-  return <div>page</div>;
+  return (
+    <>
+      <PageTitle title='Users' />
+      <Metrics />
+      <UsersTable />
+    </>
+  );
 }

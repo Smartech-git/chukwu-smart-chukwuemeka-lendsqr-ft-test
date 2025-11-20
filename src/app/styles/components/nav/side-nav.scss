@@ -11,6 +11,8 @@
   box-shadow: var(--shadow-right);
   background-color: var(--color-surface);
   overflow-y: scroll;
+  flex-shrink: 0;
+  z-index: 10;
 
   @media (max-width: vars.$media-query-lg) {
     display: none;
@@ -27,7 +29,7 @@
 
 .side-nav-content > h1 {
   text-transform: uppercase;
-  font-size: var(--spacing-sm);
+  font-size: var(--spacing-md);
   font-weight: 500;
   padding: 0 var(--spacing-pg);
   margin-top: 2rem;

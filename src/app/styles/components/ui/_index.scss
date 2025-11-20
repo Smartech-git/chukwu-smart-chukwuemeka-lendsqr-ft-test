@@ -4,9 +4,12 @@
 @use "./select";
 @use "./date-picker";
 @use "./sheet";
+@use "./table";
+@use "./chips";
+@use "./pagination";
 
 .element-content {
-  min-width: 180px;
+  min-width: 200px;
   width: 100%;
   background-color: var(--color-surface);
   border-radius: 4px;
@@ -45,13 +48,14 @@
   cursor: pointer;
   align-items: center;
   min-height: 24px;
-  padding: var(--spacing-sm);
+  padding: var(--spacing-md);
   position: relative;
   user-select: none;
   outline: none;
   display: flex;
   flex-direction: row;
   align-items: center;
+  text-transform: capitalize;
   gap: var(--spacing-xs);
 
   svg {
@@ -60,6 +64,8 @@
     color: inherit;
     fill: currentColor;
     stroke: currentColor;
+    width: 16px;
+    height: 16px;
   }
 }
 

@@ -1,0 +1,129 @@
+@use "../base/variables" as vars;
+
+.users-metrics-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--spacing-base);
+
+  @media (max-width: vars.$media-query-md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-md);
+  }
+}
+
+.users-metric {
+  display: flex;
+  padding: var(--spacing-lg);
+  height: fit-content;
+  background-color: var(--color-surface);
+  flex-direction: column;
+  gap: var(--spacing-base);
+  border-radius: 4px;
+  border: 1px solid var(--color-secondary-60);
+  box-shadow: var(--shadow-default);
+  width: 100%;
+
+  @media (max-width: vars.$media-query-sm) {
+    padding: var(--spacing-base);
+  }
+}
+
+.users-metric-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 100%;
+}
+
+.users-metric-icon-wrapper.icon-0 {
+  color: var(--color-pink);
+}
+
+.users-metric-icon-wrapper.icon-1 {
+  color: var(--color-purple);
+}
+
+.users-metric-icon-wrapper.icon-2 {
+  color: var(--color-bright-orange);
+}
+
+.users-metric-icon-wrapper.icon-3 {
+  color: var(--color-pink-red);
+}
+
+.users-metric-icon-wrapper {
+  opacity: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 100%;
+    background-color: currentColor;
+    opacity: 0.1;
+    z-index: 0;
+  }
+
+  & svg {
+    opacity: 1 !important;
+    position: absolute;
+    z-index: 1;
+  }
+}
+
+.users-metric > h1 {
+  font-size: var(--spacing-md);
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--color-gray-900);
+}
+
+.users-metric > p {
+  font-size: var(--spacing-lg);
+  font-weight: 600;
+  color: var(--color-secondary);
+
+  @media (max-width: vars.$media-query-sm) {
+    font-size: var(--spacing-base);
+  }
+}
+
+.users-table-bottom-content {
+  display: flex;
+  gap: var(--spacing-lg);
+  justify-content: space-between;
+  width: 100%;
+
+  @media (max-width: vars.$media-query-md) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.users-table-bottom-content-per-page {
+  color: var(--color-gray-900);
+  display: flex;
+  gap: var(--spacing-base);
+  align-items: center;
+  font-size: var(--spacing-md);
+}
+
+.users-table-bottom-content-per-page span {
+  white-space: nowrap;
+}
+
+.users-table-bottom-content-per-page .btn {
+  color: var(--color-secondary);
+  background: var(--color-secondary-60);
+  padding: var(--spacing-xs) var(--spacing-sm) !important;
+  gap: var(--spacing-sm);
+  border-radius: 4px !important;
+
+  & svg {
+    opacity: 60%;
+  }
+}

@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 
-import SideNavWrapper from "@/components/layout/side-nav-wrapper";
 import Header from "@/components/nav/header";
 import SideNav from "@/components/nav/side-nav";
 import { sideNavs } from "@/constants/side-nav";
@@ -13,10 +12,12 @@ export default function AppLayout({ children }: Props) {
     <div className='app-layout'>
       <Header />
       <div className='app-layout-content'>
-        <SideNavWrapper>
+        <div className='side-nav-wrapper hide-scrollbar'>
           <SideNav navs={sideNavs} />
-        </SideNavWrapper>
-        {children}
+        </div>
+        <div className='page-wrapper'>
+          <div className='page-wrapper-content'>{children}</div>
+        </div>
       </div>
     </div>
   );

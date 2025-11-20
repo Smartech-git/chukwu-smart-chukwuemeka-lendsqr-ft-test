@@ -108,13 +108,13 @@
   font-size: var(--font-size-base);
   font-weight: 600;
   color: var(--color-gray-900);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
 }
 
 .calendar {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
 }
 
 .calendar-header {

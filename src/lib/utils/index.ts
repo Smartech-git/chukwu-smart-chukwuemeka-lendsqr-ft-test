@@ -4,6 +4,10 @@ export function cn(...inputs: ClassValue[]) {
   return clsx(inputs);
 }
 
+export const formatNumber = (num: number) => {
+  return num.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
 /**
  * @template T - The type of the input object, where keys are strings and values are stringifiable.
  * @param data - The object to convert into FormData.
