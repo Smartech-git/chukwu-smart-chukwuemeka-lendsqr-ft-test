@@ -334,7 +334,7 @@ styles/
   - Weights: 400, 500, 600, 700
 
 ### CSS Variables
-Design tokens are defined in `_variables.scss` and used throughout the application for consistent theming.
+Design tokens are defined in `/base` and used throughout the application for consistent theming.
 
 ## 🔒 Type Safety
 
