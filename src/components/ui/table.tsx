@@ -4,6 +4,8 @@ import { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
+import { Icon } from "../icons";
+
 export type Column = {
   key: string;
   label: string;
@@ -18,9 +20,10 @@ interface Props<T extends { key?: string | number; id?: string | number }> {
   renderCell?: (item: T, columnKey: string) => React.ReactNode;
   renderColumn?: (column: Column) => React.ReactNode;
   bottomContent?: ReactNode;
+  loading?: boolean;
 }
 
-export default function Table<T extends { key?: string | number; id?: string | number }>({ data, renderColumn, columns, renderCell, bottomContent }: Props<T>) {
+export default function Table<T extends { key?: string | number; id?: string | number }>({ data, renderColumn, loading, columns, renderCell, bottomContent }: Props<T>) {
   return (
     <div className='table-base'>
       <div className='table-wrapper card'>
@@ -46,6 +49,11 @@ export default function Table<T extends { key?: string | number; id?: string | n
             ))}
           </tbody>
         </table>
+        {loading && (
+          <div className='table-loading'>
+            <Icon name='icon-spinner' className='animate-spin' width={48} height={48} />
+          </div>
+        )}
       </div>
       {bottomContent && bottomContent}
     </div>

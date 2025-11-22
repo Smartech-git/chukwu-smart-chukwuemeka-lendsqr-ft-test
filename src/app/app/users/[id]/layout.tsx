@@ -2,13 +2,19 @@ import { ReactNode } from "react";
 
 import PageRouteBack from "@/components/common/page-route-back";
 import PageTitle from "@/components/common/page-title";
-import UserDetialsProfile from "@/components/content/users/user-details-profile";
+import UserDetailsClientWrapper from "@/components/layouts/user-details-client-wrapper";
 import Button from "@/components/ui/button";
+import { getUser } from "@/requests/get-user";
 
 interface Props {
   children: ReactNode;
+  params: Promise<{ id: string }>;
 }
-export default function UserDetailsLayout({ children }: Props) {
+
+export default async function UserDetailsLayout({ children, params }: Props) {
+  const { id } = await params;
+  const userDetials = await getUser(id);
+
   return (
     <>
       <div className='user-details-header'>
@@ -26,7 +32,7 @@ export default function UserDetailsLayout({ children }: Props) {
         </div>
       </div>
 
-      <UserDetialsProfile />
+      <UserDetailsClientWrapper userId={id} initialData={userDetials} showProfile={true} />
       <div className='card users-details-layout-children'>{children}</div>
     </>
   );

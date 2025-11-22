@@ -3,17 +3,24 @@
 import { format } from "date-fns";
 import { useCallback } from "react";
 
-import { ColumeKey, users, UsersData, usersTableCol } from "@/app/app/users/variables";
+import { ColumeKey, UsersData, usersTableCol } from "@/app/app/users/variables";
 import UsersTableActions from "@/components/content/users/users-table-actions";
+import UsersTableFilter from "@/components/content/users/users-table-filter";
+import UsersTablePerPage from "@/components/content/users/users-table-per-page";
 import Chip from "@/components/ui/chip";
 import Pagination from "@/components/ui/pagination";
 import Table, { Column } from "@/components/ui/table";
+import { useInfiniteAPI } from "@/hooks/use-infinite-API";
 import { cn } from "@/lib/utils";
-
-import UsersTableFilter from "./users-table-filter";
-import UsersTablePerPage from "./users-table-per-page";
+import { getUsers } from "@/requests/get-users";
+import { TableUser } from "@/requests/types";
 
 export default function UsersTable() {
+  const { isLoadingMore, currentPage, total, setSize, currentPageData } = useInfiniteAPI<TableUser>("users", {
+    customFetcher: getUsers,
+    limit: 20,
+  });
+
   const renderColumn = useCallback((column: Column) => {
     return <UsersTableFilter label={column.label} className={cn(column.hidden && "hidden")} />;
   }, []);
@@ -33,25 +40,33 @@ export default function UsersTable() {
       case "status":
         return <Chip status={item.status} />;
       case "action":
-        return <UsersTableActions userId={item.id} />;
+        return <UsersTableActions userId={1} />;
       default:
         return null;
     }
   }, []);
 
-  return <Table data={users} renderCell={renderCell} columns={usersTableCol} renderColumn={renderColumn} bottomContent={<UsersTableBottomContent />} />;
+  return <Table loading={isLoadingMore} data={currentPageData} renderCell={renderCell} columns={usersTableCol} renderColumn={renderColumn} bottomContent={<UsersTableBottomContent initialPage={currentPage} total={total} setSize={setSize} />} />;
 }
 
-const UsersTableBottomContent = () => {
-  const handleOnPageSelect = (page: number) => {};
+interface Props {
+  total: number;
+  initialPage: number;
+  setSize: (size: number) => void;
+}
+const UsersTableBottomContent = ({ total, initialPage, setSize }: Props) => {
+  const handleOnPageSelect = (page: number) => {
+    setSize(page);
+  };
+
   return (
     <div className='users-table-bottom-content'>
       <div className='users-table-bottom-content-per-page'>
         <span>Showing</span>
         <UsersTablePerPage />
-        <span>{`out of 500`}</span>
+        <span>{`out of 100`}</span>
       </div>
-      <Pagination total={12} onChange={handleOnPageSelect} />
+      <Pagination total={total} initialPage={initialPage} onChange={handleOnPageSelect} />
     </div>
   );
 };

@@ -1,3 +1,13 @@
 :root {
   --transition-hover: all 0.3s;
 }
+
+.animate-spin {
+  animation: animate-spin 0.7s linear infinite;
+}
+
+@keyframes animate-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

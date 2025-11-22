@@ -1,24 +1,19 @@
-import { useState } from "react";
 import ReactPaginate from "react-paginate";
 
-import { Icon } from "../icons";
-
-import Button from "./button";
+import { Icon } from "@/components/icons";
+import Button from "@/components/ui/button";
 
 interface Props {
   total: number;
   pageRangeDisplayed?: number;
-  intialPage?: number;
+  initialPage?: number;
   onChange: (page: number) => void;
 }
 
-export default function Pagination({ total, onChange, pageRangeDisplayed = 3, intialPage = 1 }: Props) {
-  const [disabled, setDisabled] = useState(false);
-
+export default function Pagination({ total, onChange, pageRangeDisplayed = 3 }: Props) {
   return (
     <ReactPaginate
       breakLabel='...'
-      initialPage={intialPage}
       previousLabel={
         <Button variant='flat'>
           <Icon name='icon-arrow-left' width={14} height={14} />
@@ -44,7 +39,7 @@ export default function Pagination({ total, onChange, pageRangeDisplayed = 3, in
       containerClassName='pagination'
       activeClassName='active'
       disabledClassName='disabled'
-      renderOnZeroPageCount={null}
+      // renderOnZeroPageCount={null}
     />
   );
 }

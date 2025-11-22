@@ -46,7 +46,7 @@ export default function SignInForm() {
 
   useEffect(() => {
     if (state.success) {
-      router.replace("/app/dashboard");
+      router.replace("/app/users");
     }
   }, [state.success]);
 

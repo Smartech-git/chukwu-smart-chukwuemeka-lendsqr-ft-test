@@ -1,11 +1,16 @@
+"use client";
 import Price from "@/components/common/price";
 import UserDetailsNav from "@/components/content/users/user-details-nav";
 import { Icon } from "@/components/icons";
 import Rating from "@/components/ui/rating";
-import { userProfileData } from "@/app/app/users/variables";
+import { useUserDetails } from "@/hooks/use-user-details";
+import { Profile } from "@/requests/get-user";
 
-export default function UserDetialsProfile() {
-  const { fullName, userId, userTier, accountBalance, accountNumber, bankName } = userProfileData;
+interface Props {
+  userProfile: Profile;
+}
+export default function UserDetialsProfile({ userProfile }: Props) {
+  const { fullName, userId, userTier, accountBalance, accountNumber, bankName } = userProfile;
 
   return (
     <div className='user-details-profile card'>

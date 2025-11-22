@@ -1,21 +1,9 @@
-import { userDetailsData } from "../variables";
+import UserDetailsClientWrapper from "@/components/layouts/user-details-client-wrapper";
+import { getUser } from "@/requests/get-user";
 
-export default function Page() {
-  return (
-    <div className='user-details-general-details'>
-      {userDetailsData.map((section, index) => (
-        <div key={index} className='user-details-general-details-block'>
-          <h1>{section.title}</h1>
-          <div className='user-details-block-content'>
-            {section.blocks.map((block, blockIndex) => (
-              <div key={blockIndex} className='user-details-block-item'>
-                <h1>{block.title}</h1>
-                <p>{block.value}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const userDetials = await getUser(id);
+
+  return <UserDetailsClientWrapper userId={id} initialData={userDetials} showGeneralDetails={true} />;
 }

@@ -40,7 +40,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, va
   return (
     <button className={cn(buttonVariants({ variant, size }), className)} ref={ref} disabled={disabled as boolean} {...props}>
       {isLoading ? (
-        <Icon name='icon-spinner' width={20} height={20} className='btn-spinner' />
+        <Icon name='icon-spinner' width={20} height={20} className='animate-spin' />
       ) : (
         <>
           {startContent && startContent}

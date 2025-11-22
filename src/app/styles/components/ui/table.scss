@@ -17,12 +17,25 @@
   background-color: var(--color-surface-mid);
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+  position: relative;
+}
+
+.table-loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  color: var(--color-primary);
 }
 
 .table {
   min-height: 400px;
   min-width: 100%;
   width: 100%;
+  position: relative;
 }
 
 .table-thead-tr {
