@@ -231,14 +231,6 @@ The project uses ESLint with Next.js and TypeScript configurations:
 npm run lint
 ```
 
-#### Type Checking
-
-TypeScript is configured with strict mode enabled. Type check with:
-
-```bash
-tsc --noEmit
-```
-
 ## 🏗 Architecture
 
 ### Directory Structure
