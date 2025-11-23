@@ -47,7 +47,7 @@ const workSans = Work_Sans({
 export const metadata: Metadata = {
   title: "Loan management software | Lending software | Lendsqr",
   description: "Start and scale your loan business with Lendsqr loan management system. Get the best features to position you as a market leader and make your customers happy!",
-  metadataBase: new URL("https://wandeesan.africa"),
+  metadataBase: new URL("https://chukwu-smart-lendsqr-fe-test.netlify.app"),
   openGraph: {
     title: "Loan management software | Lending software | Lendsqr",
     images: { url: "assets/images/preview.webp", alt: "Lendsqr" },
